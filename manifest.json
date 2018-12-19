@@ -1,0 +1,16 @@
+{
+    "name": "PWA SUBMISSION PERTAMA",
+    "short_name": "KOTA SERANG",
+    "description": "Aplikasi PWA info tentang Kota Serang",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#E53935",
+    "theme_color": "#E53935",
+    "icons": [
+        {
+            "src": "icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
