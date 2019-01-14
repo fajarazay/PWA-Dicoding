@@ -1,0 +1,1 @@
+endpoint: https://android.googleapis.com/gcm/send/ckeeHmy48rw:APA91bFJZbHZQiYfUInnMQneVXfXZkKKp_TPkFPrpmHqdkrPsa50dnzXHtsROQvRdD3l0qPu-ukzuj8CqLgytc4_SKdPDr7dAICXYcacGHhQmbHbsOcSbJ0UvQWiczZBZbdyrNvZbKX8

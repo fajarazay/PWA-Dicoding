@@ -1,0 +1,207 @@
+<!-- Menyiapkan Halaman Detail Artikel -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Detail Player</title>
+  <meta name="description" content="My first PWA" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/materialize.min.css" />
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#E53935" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Membuat navbar sticky ketika scrolling -->
+  <div class="navbar-fixed">
+    <!-- Navigasi -->
+    <nav class="red lighten-1" role="navigation">
+      <div class="nav-wrapper container">
+        <a class="hide-on-small-only" href="#" class="brand-logo" id="logo-container">Detail Player</a>
+        <a href="javascript:goBack()" class="sidenav-trigger" data-target="nav-mobile">
+          <i class="material-icons">arrow_back</i>
+        </a>
+        <ul class="topnav right hide-on-med-and-down">
+        </ul>
+        <ul class="sidenav" id="nav-mobile"></ul>
+      </div>
+    </nav>
+
+  </div>
+  <!-- Akhir Navigasi -->
+  <div class="container" id="body-content"></div>
+  <script type="text/javascript" src="https://unpkg.com/snarkdown@1.0.2/dist/snarkdown.umd.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script type="text/javascript" src="/js/api.js"></script>
+  <script type="text/javascript" src="js/indexeddb.js"></script>
+  <script type="text/javascript" src="js/database.js"></script>
+  <script type="text/javascript" src="js/idb.js"></script>
+  <script type="text/javascript" src="js/teams.js"></script>
+  <script>
+    // REGISTER SERVICE WORKER
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker
+          .register("/service-worker.js")
+          .then(function () {
+            console.log("Pendaftaran ServiceWorker berhasil");
+          })
+          .catch(function () {
+            console.log("Pendaftaran ServiceWorker gagal");
+          });
+      });
+    } else {
+      console.log("ServiceWorker belum didukung browser ini.");
+    }
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var urlParams = new URLSearchParams(window.location.search);
+      var id = Number(urlParams.get("id"));
+      var isFavorit = false
+      cekData("pemain_favorit", id).then((msg) => {
+        console.log("statusData: resolve = " + msg)
+        document.getElementById("iconFav").innerHTML = "favorite"
+        getSavedDataById("pemain")
+        isFavorit = true
+      }).catch((msg) => {
+        console.log("statusData: reject = " + msg)
+        document.getElementById("iconFav").innerHTML = "favorite_border"
+        getDetailPlayerById()
+        isFavorit = false
+      })
+
+      var iconFav = document.getElementById("iconFav");
+
+      iconFav.onclick = function () {
+        console.log("Tombol FAB di klik.");
+        if (isFavorit) {
+          deleteDatafav("pemain_favorit", id);
+          isFavorit = false
+        } else {
+          item = getDetailPlayerById();
+          item.then(function (pemain) {
+            createDataFav("pemain", pemain);
+          });
+          isFavorit = true
+        }
+      };
+    });
+  </script>
+
+  <!-- Membuat card -->
+  <div class="card">
+    <div class="center-align" id="preloader">
+
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-red">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-yellow">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+
+        <div class="spinner-layer spinner-green">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="fabFav" class="fixed-action-btn">
+      <a class="btn-floating btn-large red">
+        <i id="iconFav" class="large material-icons">favorite_border</i>
+      </a>
+    </div>
+    <div class="card-content">
+
+      <thead>
+      <tbody>
+        <table>
+          <tr>
+            <td>Name :</td>
+            <td id="name"></td>
+          </tr>
+          <tr>
+            <td>First Name :</td>
+            <td id="firstName"></td>
+          </tr>
+          <tr>
+            <td>Last Name :</td>
+            <td id="lastName"></td>
+          </tr>
+          <tr>
+            <td>Date Of Birth :</td>
+            <td id="dateOfBirth"> </td>
+          </tr>
+          <tr>
+            <td>Country Of Birth :</td>
+            <td id="countryOfBirth"></td>
+          </tr>
+          <tr>
+            <td>Nasionality :</td>
+            <td id="nationality"></td>
+          </tr>
+          <tr>
+            <td>Position :</td>
+            <td id="position"></td>
+          </tr>
+
+        </table>
+      </tbody>
+      </thead>
+    </div>
+  </div>
+
+  </script>
+
+  <script type="text/javascript">
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+
+</body>
+
+</html>

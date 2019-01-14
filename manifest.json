@@ -1,16 +1,16 @@
 {
-    "name": "PWA SUBMISSION PERTAMA",
-    "short_name": "KOTA SERANG",
-    "description": "Aplikasi PWA info tentang Kota Serang",
+    "name": "Aplikasi Informasi Sepakbola",
+    "short_name": "PWA Bola",
+    "description": "Aplikasi Informasi Sepakbola - PWA Fajar Septian",
     "start_url": "/index.html",
     "display": "standalone",
     "background_color": "#E53935",
     "theme_color": "#E53935",
-    "icons": [
-        {
-            "src": "icon.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        }
-    ]
+    "icons": [{
+        "src": "icon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }],
+    "gcm_sender_id": "770998792113"
+
 }
