@@ -1,5 +1,5 @@
 function databasePromise(idb) {
-    var dbPromise = idb.open("pwasepakbola", 1, function (upgradeDb) {
+    var dbPromise = idb.open("db_pwasepakbola", 1, function (upgradeDb) {
         if (!upgradeDb.objectStoreNames.contains("tim_favorit")) {
             var indexTimFav = upgradeDb.createObjectStore("tim_favorit", {
                 keyPath: "id"
