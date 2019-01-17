@@ -5,7 +5,9 @@ function resultKlasemenJSON(data) {
     //console.log("cek panjang klasemen table: " + klasemen.table.length)
 
     klasemen.table.forEach(function (club) {
-      //console.log("cek nama-nama club: " + club.team.name)
+      club = JSON.parse(JSON.stringify(club).replace(/http:/g, 'https:'));
+
+      console.log("cek url logo club: " + club.team.crestUrl)
 
       dataTabelKlasemen += `<tr>
         <td class="center-align">${club.position}</td>

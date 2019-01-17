@@ -1,4 +1,7 @@
 function resultDetailTimJSON(data) {
+  data = JSON.parse(JSON.stringify(data).replace(/http:/g, 'https:'));
+
+  console.log("cek logo detail tim : " + data.crestUrl)
   document.getElementById("namaKlub").innerHTML = data.name;
   document.getElementById("logoKlub").src = data.crestUrl;
   document.getElementById("name").innerHTML = data.name;
