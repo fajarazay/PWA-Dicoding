@@ -228,13 +228,3 @@ function getDetailMatchById() {
       .catch(error);
   });
 }
-
-function getSavedMatchById() {
-  // Ambil nilai query parameter (?id=)
-  var urlParams = new URLSearchParams(window.location.search);
-  var idParam = Number(urlParams.get("id"));
-
-  getMatchesById(idParam).then(function (match) {
-    resultDetailMatchJSON(match);
-  });
-}
